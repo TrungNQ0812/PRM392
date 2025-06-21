@@ -1,6 +1,10 @@
 package com.example.demofollower;
 
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,11 +42,11 @@ public class ProductListActivity extends AppCompatActivity {
         productAdapter = new ProductAdapter(productList,this);
         recyclerViewProductList.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewProductList.setAdapter(productAdapter);
-
+        fetchProductList();
     }
 
     public void fetchProductList(){
-        for(int i = 1; i <= 10; i++){
+        for(int i = 1; i <= 50; i++){
             ProductBean productBean = new ProductBean();
             productBean.setId(i);
             productBean.setName("Product " + i);
@@ -52,5 +56,19 @@ public class ProductListActivity extends AppCompatActivity {
         productAdapter.notifyDataSetChanged();
     }
 
+//    public void onContextItemSelected(MenuItem item){
+//        if(item.getItemId() == R.id){
+//
+//        }
+//    }
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo){
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//    }
 
+    @Override
+    public boolean  onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 }
